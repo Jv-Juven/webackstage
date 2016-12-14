@@ -1,16 +1,17 @@
-const defaultConfig = './config-default';
+const defaultConfig = './config-default.js';
 // 可设定为绝对路径，如 /opt/product/config-override.js
-const overrideConfig = './config-override';
-const testConfig = './config-test';
+const overrideConfig = './config-override.js';
+const testConfig = './config-test.js';
 
 const fs = require('fs');
 
 var config = null;
+
 if (process.env.NODE_ENV === 'test') {
     console.log(`Load ${testConfig}`);
     config = require(testConfig);
 } else {
-    console.log(`Load ${defaultConfig}`);
+    console.log(`Load ${defaultConfig}...`);
     config = require(defaultConfig);
     try {
         if (fs.statSync(overrideConfig).isFile()) {
