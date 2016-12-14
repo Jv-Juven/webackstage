@@ -1,3 +1,6 @@
+/**
+ * 生产环境配置
+ */
 var config = {
     // database: 'production',
     // username: 'www',

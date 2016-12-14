@@ -1,3 +1,6 @@
+/**
+ * 默认配置
+ */
 var config = {
     dialect: 'mariadb',
     database: 'koa', // 使用哪个数据库
