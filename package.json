@@ -1,31 +1,37 @@
 {
-	"name": "koa-demo",
-	"version": "1.0.0",
-	"description": "koa的初次尝试",
-	"main": "start.js",
-	"dependencies": {
-		"babel-core": "6.13.2",
-		"babel-polyfill": "6.13.0",
-		"babel-preset-es2015-node6": "0.3.0",
-		"babel-preset-stage-3": "6.5.0",
-		"koa": "^2.0.0",
-		"koa-router": "7.0.0",
-		"koa-bodyparser": "3.2.0",
-		"sequelize": "3.24.1",
-		"mysql": "2.11.1"
-	},
-	"devDependencies": {},
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node --use_strict start.js",
-		"dev": "cross-env NODE_ENV=dev nodemon start.js",
-		"build": "pm2 start start.js",
-		"dbbuild": "cross-env NODE_ENV=build node init-db.js",
-		"dbdev": "node init-db.js"
-	},
-	"keywords": [
-		"koa-demo"
-	],
-	"author": "Juven",
-	"license": "ISC"
+  "name": "koa-demo",
+  "version": "1.0.0",
+  "description": "koa的初次尝试",
+  "main": "start.js",
+  "dependencies": {
+    "babel-core": "6.13.2",
+    "babel-polyfill": "6.13.0",
+    "babel-preset-es2015-node6": "0.3.0",
+    "babel-preset-stage-3": "6.5.0",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "3.2.0",
+    "koa-csrf": "^3.0.4",
+    "koa-router": "7.0.0",
+    "mysql": "2.11.1",
+    "sequelize": "3.24.1"
+  },
+  "devDependencies": {
+    "koa-convert": "^1.2.0",
+    "koa-csrf": "^3.0.4",
+    "koa-jwt": "^1.2.0",
+    "koa-session": "^3.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --use_strict start.js",
+    "dev": "cross-env NODE_ENV=dev nodemon start.js",
+    "build": "pm2 start start.js",
+    "dbbuild": "cross-env NODE_ENV=build node init-db.js",
+    "dbdev": "node init-db.js"
+  },
+  "keywords": [
+    "koa-demo"
+  ],
+  "author": "Juven",
+  "license": "ISC"
 }
