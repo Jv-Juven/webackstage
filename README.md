@@ -12,6 +12,6 @@
 * 生产环境数据库配置
 
 ### 待完善的功能
-* CSRF防跨域攻击
-* JWT前后端分离用户验证
-* SESSION基本使用
+* [CSRF防跨域攻击](https://github.com/koajs/csrf)
+* [JWT前后端分离用户验证](https://github.com/auth0/node-jsonwebtoken)
+* [SESSION](https://github.com/koajs/generic-session) for [Mysql](https://github.com/tb01923/koa-mysql-session) 基本使用
