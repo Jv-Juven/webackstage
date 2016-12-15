@@ -1,8 +1,11 @@
 var fn_index = async (ctx, next) => {
+	if (process.env.NODE_ENV == "production") {
+		console.log('开发环境中...');
+	}
 	ctx.response.body = `<h1>Index</h1>
         <form action="/signin" method="post">
             <p>Name: <input name="name" value="koa"></p>
-            <p>Password: <input name="password" type="password"></p>
+            <p>Password: <input name="password" type="password" value="12345"></p>
             <p><input type="submit" value="Submit"></p>
         </form>`;
 };

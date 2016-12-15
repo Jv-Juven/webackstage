@@ -14,8 +14,11 @@ if (process.env.NODE_ENV === 'test') {
     console.log(`Load ${defaultConfig}...`);
     config = require(defaultConfig);
     try {
-        if (fs.statSync(overrideConfig).isFile()) {
-            console.log(`Load ${overrideConfig}`);
+        // if (fs.statSync(overrideConfig).isFile()) {
+        //     console.log(`Load ${overrideConfig}`);
+        //     config = Object.assign(config, require(overrideConfig));
+        // }
+        if (process.env.NODE_ENV == "build") {
             config = Object.assign(config, require(overrideConfig));
         }
     } catch (err) {

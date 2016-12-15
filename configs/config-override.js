@@ -2,10 +2,10 @@
  * 生产环境配置
  */
 var config = {
-    // database: 'production',
-    // username: 'www',
-    // password: 'secret-password',
-    // host: '192.168.1.199'
+    database: 'infoAdmin',
+    username: 'root',
+    password: 'qwer1234',
+    host: 'localhost'
 };
 
 module.exports = config;
