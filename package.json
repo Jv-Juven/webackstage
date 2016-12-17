@@ -25,7 +25,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --use_strict start.js",
     "dev": "cross-env NODE_ENV=dev nodemon start.js",
-    "build": "pm2 start start.js",
+    "build": "cross-env NODE_ENV=build pm2 start start.js",
     "dbbuild": "cross-env NODE_ENV=build node init-db.js",
     "dbdev": "node init-db.js"
   },
