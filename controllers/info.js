@@ -1,21 +1,52 @@
-const LottryModel = require("../models/Lottery");
-var info_fn = async (ctx, next) => {
-    await LottryModel.create({
-        awardId: 29,
-        userName: '梁朝阳',
-        phone: '18967309458',
-        award: '通行证',
-        status: '2',
-        awardType: 1
-    }).then((created) => {
-        console.log(created);
-        ctx.body = "抽奖结果info 成功" + created.dataValues.id;
-    }).catch((err) => {
-        ctx.body = "抽奖结果info 失败" + err;
-    });
+const LotteryModel = require("../models/Lottery");
 
+const jwt = require('koa-jwt');
+var info_fn = async (ctx, next) => {
+    let jwtData; // token
+    let token = ctx.request.header.token;
+    console.log("token", token);
+    try {
+        let jwtData = jwt.verify(token, 'secret');
+        let awardId = jwtData.awardId;
+        let params = ctx.request.body;
+
+        // 验证姓名和手机号码
+        if (!params.username || params.username.length == 0) {
+            ctx.body = {
+                errCode: 1,
+                errMsg: "无效的姓名"
+            }
+            return;
+        }
+        if (!params.phone || params.phone.length < 7 || isNaN(parseInt(params.phone))) {
+            ctx.body = {
+                errCode: 2,
+                errMsg: "无效的手机号"
+            }
+            return;
+        }
+
+        // console.log("token", jwtData);
+        LotteryModel.update({
+            userName: params.username,
+            phone: params.phone
+        }, {
+            where: {
+                awardId: awardId
+            }
+        });
+        ctx.body = {
+            errCode: 0,
+            errMsg: "提交成功"
+        };
+
+    } catch(err) {
+        console.log("token出错：", err);
+        ctx.body = "无效的用户标志token" + err;
+    }
+    // ctx.body = ctx.params;
 }
 
 module.exports = {
-    "GET /info": info_fn
+    "POST /info": info_fn
 }
