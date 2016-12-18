@@ -1,0 +1,77 @@
+var LotteryModel = require('../models/Lottery');
+var fs = require('fs');
+// 写入1000个数字
+let setLotteryNums = async () => {
+    let lotteryNums = [];
+    let str = "";
+    for(let i = 1;i <= 1000; i++) {
+        lotteryNums.push(i);
+    }
+    str = lotteryNums.join(",");
+    await fs.writeFile(__dirname + "/../fs_data/lottery.txt", str, (err) => {
+        console.log(err);
+    });
+}
+
+async function fn () {
+    // 生成通行证30个数据
+    let baseNum = 3;
+    for (let i = 0; i < 30; i++) {
+        let awardId = 30 * i + baseNum;
+        let searchResult = [];
+        await LotteryModel.findAll({
+            where: {
+                awardId: awardId
+            }
+        }).then((res) => {
+            searchResult = res;
+            // console.log("searchResult", res);
+        });
+        if (searchResult.length == 0 ) {
+            await LotteryModel.create({
+                awardId: awardId,
+                userName: "",
+                phone: "",
+                award: "通行证",
+                status: 2,
+                awardType: 1,
+                userToken: ""
+            });
+        }
+    }
+    // 生成背包10个数据
+    for (let i = 0; i < 10; i++) {
+        let awardId = 90 * i + 2;
+        let searchResult = [];
+        await LotteryModel.findAll({
+            where: {
+                awardId: awardId
+            }
+        }).then((res) => {
+            searchResult = res;
+            // console.log("searchResult", res);
+        });
+        console.log("awardId: " + (typeof searchResult));
+        if (searchResult.length == 0 ) {
+            await LotteryModel.create({
+                awardId: awardId,
+                userName: "",
+                phone: "",
+                award: "背包",
+                status: 2,
+                awardType: 2,
+                userToken: ""
+            });
+        }
+    }
+    // 写入1000个数字
+    await setLotteryNums().then((res) => {
+        console.log("随机数字生成成功" + res);
+    }).catch((err) => {
+        console.log("随机数据生成失败" + err);
+    });
+
+    process.exit(0);
+};
+
+module.exports = fn;

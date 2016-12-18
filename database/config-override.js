@@ -4,7 +4,7 @@
 var config = {
     database: 'infoAdmin',
     username: 'root',
-    password: 'qwer1234',
+    password: '',
     host: 'localhost'
 };
 

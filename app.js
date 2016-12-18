@@ -6,12 +6,14 @@ const jwt = require('koa-jwt');
 const controller = require(__dirname + '/controller');
 // 引入koa-bodyparser来解析原始request请求
 const bodyParser = require('koa-bodyparser');
+const session = require('koa-session');
+const csrf = require('koa-csrf');
 
 // 创建一个Koa对象表示web app本身:
 const app = new Koa();
-console.log(jwt.sign({
-  data: 'foobar'
-}, 'secret', { expiresIn: 60 * 60 }));
+// console.log(jwt.sign({
+//   data: 'foobar'
+// }, 'secret', { expiresIn: 60 * 60 }));
 // app配置信息
 const appConfig = require(__dirname + "/config/app");
 
@@ -24,9 +26,13 @@ const appConfig = require(__dirname + "/config/app");
 // Middleware below this line is only reached if JWT token is valid
 // app.use(jwt({ secret: 'shared-secret', key: 'jwtdata' }));
 
+app.keys = ['session key', 'csrf example'];
+app.use(session(app));
+
 // 注册koa-bodyparser到app对象上
 app.use(bodyParser());
 
+app.use(new csrf.default());
 // 添加路由中间件:
 app.use(controller());
 
