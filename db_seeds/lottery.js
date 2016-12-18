@@ -3,11 +3,23 @@ var fs = require('fs');
 // 写入1000个数字
 let setLotteryNums = async () => {
     let lotteryNums = [];
+    let randomNums = [];
     let str = "";
-    for(let i = 1;i <= 1000; i++) {
+    for (let i = 1; i <= 1000; i++) {
         lotteryNums.push(i);
     }
-    str = lotteryNums.join(",");
+    for (let i = 0; i < 1000; i++) {
+        let length = lotteryNums.length;
+        // console.log("长度", length);
+        let index = Math.floor(Math.random() * length);
+        // console.log("索引", index);
+        let num = lotteryNums.splice(index, 1)[0];
+        // console.log("随机数", num);
+        randomNums.push(num);
+    }
+    // console.log("结果数组：", randomNums);
+    str = randomNums.join(",");
+    // console.log("结果字符串：", str);
     await fs.writeFile(__dirname + "/../fs_data/lottery.txt", str, (err) => {
         console.log(err);
     });
@@ -51,7 +63,7 @@ async function fn () {
             searchResult = res;
             // console.log("searchResult", res);
         });
-        console.log("awardId: " + (typeof searchResult));
+        // console.log("awardId: " + (typeof searchResult));
         if (searchResult.length == 0 ) {
             await LotteryModel.create({
                 awardId: awardId,
@@ -71,7 +83,7 @@ async function fn () {
         console.log("随机数据生成失败" + err);
     });
 
-    process.exit(0);
+    // process.exit(0);
 };
 
 module.exports = fn;
