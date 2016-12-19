@@ -24,7 +24,7 @@ module.exports = db.defineModel('lottery', {
         type: db.INTEGER(10)
     },  // 奖品类型：1，通行证；2，背包
     userToken: {
-        type: db.STRING(100),
+        type: db.STRING(200),
         // unique: true,
         allowNull: true
     } // 用户唯一标识，所有抽奖的用户都会产生一个token

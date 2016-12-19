@@ -41,25 +41,30 @@ let lottery = async () => {
     awardInfo = () => {
         if (award[0]) {
             return {
+                awardId: award[0].awardId, // 等于lotteryNum
                 award: award[0].award,
                 awardType: award[0].awardType, // 奖品类型，1为通行证，2为背包；
                 status: award[0].status
             }
         } else {
-            return {}
+            return {
+                awardId: lotteryNum,
+            }
         }
     }
 
 
     return {
         status: status,
-        award: award[0] // awardInfo()
+        award: awardInfo() // awardInfo()
     };
 }
 var lottery_fn = async (ctx, next) => {
     let readResult = await lottery();
+    let awardId = readResult.award.awardId == undefined ? 0 : readResult.award.awardId;
+    console.log("awardId", readResult);
     let token = jwt.sign({
-        awardId: readResult.award.awardId
+        awardId: awardId
     }, 'secret', { expiresIn: "60 days" });
 
     // 更新抽中奖品的数据
@@ -68,7 +73,7 @@ var lottery_fn = async (ctx, next) => {
             userToken: token
         }, {
             where: {
-                awardId: readResult.award.awardId
+                awardId: awardId
             }
         });
     }

@@ -9,6 +9,18 @@ var info_fn = async (ctx, next) => {
         let jwtData = jwt.verify(token, 'secret');
         let awardId = jwtData.awardId;
         let params = ctx.request.body;
+        let data = LotteryModel.findAll({
+            where: {
+                awardId: awardId
+            }
+        });
+        if (data.length == 0) {
+            ctx.body = {
+                errCode: 3,
+                errMsg: "很遗憾，没中奖"
+            }
+            return;
+        }
 
         // 验证姓名和手机号码
         if (!params.username || params.username.length == 0) {
