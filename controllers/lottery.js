@@ -39,7 +39,7 @@ let lottery = async () => {
     }
 
     awardInfo = () => {
-        if (award[0]) {
+        if (award && award[0]) {
             return {
                 awardId: award[0].awardId, // 等于lotteryNum
                 award: award[0].award,
