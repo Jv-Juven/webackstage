@@ -1,7 +1,7 @@
 {
-  "name": "koa-demo",
+  "name": "info-admin",
   "version": "1.0.0",
-  "description": "koa的初次尝试",
+  "description": "infoAdmin",
   "main": "start.js",
   "dependencies": {
     "babel-core": "6.13.2",
