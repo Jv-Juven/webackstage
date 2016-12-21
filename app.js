@@ -8,6 +8,8 @@ const controller = require(__dirname + '/controller');
 const bodyParser = require('koa-bodyparser');
 // const session = require('koa-session');
 // const csrf = require('koa-csrf');
+// 解决跨域请求的问题
+const cors = require('koa-cors');
 
 // 创建一个Koa对象表示web app本身:
 const app = new Koa();
@@ -18,10 +20,10 @@ const app = new Koa();
 const appConfig = require(__dirname + "/config/app");
 
 // 对于任何请求，app将调用该异步函数处理请求：
-// app.use(async (ctx, next) => {
-// 	console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
-// 	await next();
-// });
+app.use(async (ctx, next) => {
+	console.log(`Process ${ctx.request.method} ${ctx.request.url} ${ctx.request.host}...`);
+	await next();
+});
 
 // Middleware below this line is only reached if JWT token is valid
 // app.use(jwt({ secret: 'shared-secret', key: 'jwtdata' }));
@@ -29,8 +31,10 @@ const appConfig = require(__dirname + "/config/app");
 // app.keys = ['session key', 'csrf example'];
 // app.use(session(app));
 
+app.use(cors());
 // 注册koa-bodyparser到app对象上
 app.use(bodyParser());
+
 
 // app.use(new csrf.default({
 //     invalidSessionSecretMessage: 'Invalid session secret',

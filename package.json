@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "koa-convert": "^1.2.0",
+    "koa-cors": "0.0.16",
     "koa-csrf": "^3.0.4",
     "koa-jwt": "^1.2.0",
     "koa-session": "^3.4.0"
