@@ -41,7 +41,8 @@ var info_fn = async (ctx, next) => {
         // console.log("token", jwtData);
         LotteryModel.update({
             userName: params.username,
-            phone: params.phone
+            phone: params.phone,
+            status: 3
         }, {
             where: {
                 awardId: awardId
