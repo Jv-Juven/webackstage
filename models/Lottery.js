@@ -19,7 +19,7 @@ module.exports = db.defineModel('lottery', {
     status: {
         type: db.INTEGER(10),
         allowNull: true
-    }, // 抽奖状态
+    }, // 抽奖状态 1：不中奖；2：中奖未领奖；3：已领奖；
     awardType: {
         type: db.INTEGER(10)
     },  // 奖品类型：1，通行证；2，背包
