@@ -1,5 +1,7 @@
+/**
+* 已中奖的信息提交函数
+*/
 const LotteryModel = require("../models/Lottery");
-
 const jwt = require('koa-jwt');
 var info_fn = async (ctx, next) => {
     let jwtData; // token
@@ -41,7 +43,8 @@ var info_fn = async (ctx, next) => {
         // console.log("token", jwtData);
         LotteryModel.update({
             userName: params.username,
-            phone: params.phone
+            phone: params.phone,
+            status: 3
         }, {
             where: {
                 awardId: awardId

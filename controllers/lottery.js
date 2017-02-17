@@ -5,13 +5,13 @@ const jwt = require('koa-jwt');
 var fs = require("fs");
 
 let lottery = async () => {
-    let readResult = "";
     let
         lotteryNum, // 奖品id(包括有奖、无奖)
         resArr,
         award,
         status,
         awardInfo;
+    let readResult = "";
     // 读取抽奖候选数据
     readResult = fs.readFileSync(__dirname + "/../fs_data/lottery.txt", "utf-8");
     if (readResult.length != 0) {
@@ -60,6 +60,11 @@ let lottery = async () => {
     };
 }
 var lottery_fn = async (ctx, next) => {
+    let csrfToken = ctx.request.header.csrf_token;
+    if (csrfToken != "Super Hero") {
+        ctx.body = "error: 不允许的抽奖调用";
+        return;
+    }
     let readResult = await lottery();
     let awardId = readResult.award.awardId == undefined ? 0 : readResult.award.awardId;
     console.log("awardId", readResult);

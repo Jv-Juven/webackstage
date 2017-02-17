@@ -1,14 +1,15 @@
 var LotteryModel = require('../models/Lottery');
 var fs = require('fs');
-// 写入1000个数字
+// 写入指定个数字
 let setLotteryNums = async () => {
     let lotteryNums = [];
     let randomNums = [];
+    let totalLength = 500;  // 总共写入的数字总数
     let str = "";
-    for (let i = 1; i <= 1000; i++) {
+    for (let i = 1; i <= totalLength; i++) {
         lotteryNums.push(i);
     }
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < totalLength; i++) {
         let length = lotteryNums.length;
         // console.log("长度", length);
         let index = Math.floor(Math.random() * length);
@@ -29,7 +30,7 @@ async function fn () {
     // 生成通行证30个数据
     let baseNum = 3;
     for (let i = 0; i < 30; i++) {
-        let awardId = 30 * i + baseNum;
+        let awardId = 15 * i + baseNum;
         let searchResult = [];
         await LotteryModel.findAll({
             where: {
@@ -44,7 +45,7 @@ async function fn () {
                 awardId: awardId,
                 userName: "",
                 phone: "",
-                award: "通行证",
+                award: "钢铁侠主题酷炫礼品",
                 status: 2,
                 awardType: 1,
                 userToken: ""
@@ -52,31 +53,31 @@ async function fn () {
         }
     }
     // 生成背包10个数据
-    for (let i = 0; i < 10; i++) {
-        let awardId = 90 * i + 2;
-        let searchResult = [];
-        await LotteryModel.findAll({
-            where: {
-                awardId: awardId
-            }
-        }).then((res) => {
-            searchResult = res;
-            // console.log("searchResult", res);
-        });
-        // console.log("awardId: " + (typeof searchResult));
-        if (searchResult.length == 0 ) {
-            await LotteryModel.create({
-                awardId: awardId,
-                userName: "",
-                phone: "",
-                award: "背包",
-                status: 2,
-                awardType: 2,
-                userToken: ""
-            });
-        }
-    }
-    // 写入1000个数字
+    // for (let i = 0; i < 10; i++) {
+    //     let awardId = 90 * i + 2;
+    //     let searchResult = [];
+    //     await LotteryModel.findAll({
+    //         where: {
+    //             awardId: awardId
+    //         }
+    //     }).then((res) => {
+    //         searchResult = res;
+    //         // console.log("searchResult", res);
+    //     });
+    //     // console.log("awardId: " + (typeof searchResult));
+    //     if (searchResult.length == 0 ) {
+    //         await LotteryModel.create({
+    //             awardId: awardId,
+    //             userName: "",
+    //             phone: "",
+    //             award: "背包",
+    //             status: 2,
+    //             awardType: 2,
+    //             userToken: ""
+    //         });
+    //     }
+    // }
+    // 写入数字
     await setLotteryNums().then((res) => {
         console.log("随机数字生成成功" + res);
     }).catch((err) => {
