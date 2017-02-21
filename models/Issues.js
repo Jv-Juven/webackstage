@@ -1,24 +1,24 @@
 const db = require("../db");
 
-module.exports = db.defineModel('lottery', {
+module.exports = db.defineModel('Issues', {
     goodsId: {
         type: db.INTEGER(10),
         unique: true
     }, // 发布物品id
     goodsName: {
-        type: db.STRING(100),
-        allowNull: true
+        type: db.STRING(100)
     }, // 发布物品名称
     intro: {
         type: db.STRING(100),
         allowNull: true
     }, // 物品简介
     price: {
-        type: db.FLOAT
+        type: db.DOUBLE,
+        defaultValue: 0.00
     }, // 价格
     nickName: {
         type: db.STRING(100),
-        allowNull: true
+        // allowNull: true
     }, // 用户昵称
     contactWay: {
         type: db.INTEGER,
@@ -36,7 +36,11 @@ module.exports = db.defineModel('lottery', {
         allowNull: true
     }, // 卖家补充
     imgs: {
-        type: db.ARRAY(db.TEXT),
+        type: db.STRING(1000000),
         allowNull: true
-    } // 多张图片
+    }, // 多张图片
+    goodsStatus: {
+        type: db.INTEGER,
+        defaultValue: 0
+    } // 上传信息的物品状态 0: 未处理, 1: 通过审核, 2: 不通过审核；
 });
