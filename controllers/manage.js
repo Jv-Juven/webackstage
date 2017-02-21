@@ -12,11 +12,10 @@ var changeStatus_fn = async (ctx, next) => {
                 goodsId: params.goodsId
             }
         });
-        ctx.body = params;
-        // ctx.body = {
-        //     errCode: 100,
-        //     errMsg: "修改状态成功"
-        // }
+        ctx.body = {
+            errCode: 100,
+            errMsg: "修改状态成功"
+        }
     } catch (error) {
         ctx.body = {
             errCode: 660,
