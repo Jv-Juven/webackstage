@@ -43,5 +43,5 @@ module.exports = db.defineModel('Issues', {
     goodsStatus: {
         type: db.INTEGER,
         defaultValue: 0
-    } // 上传信息的物品状态 0: 未处理, 1: 通过审核, 2: 不通过审核；
+    } // 上传信息的物品状态 0: 未处理, 1: 通过审核, 2: 不通过审核；3: 过期下架；4：已售；5：违规；
 });
