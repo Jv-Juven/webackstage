@@ -2,8 +2,9 @@ const db = require("../db");
 
 module.exports = db.defineModel('Issues', {
     goodsId: {
-        type: db.INTEGER(10),
-        unique: true
+        type: db.INTEGER,
+        unique: true,
+        autoIncrement: true
     }, // 发布物品id
     goodsName: {
         type: db.STRING(100)

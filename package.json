@@ -20,7 +20,8 @@
     "koa-cors": "0.0.16",
     "koa-csrf": "^3.0.4",
     "koa-jwt": "^1.2.0",
-    "koa-session": "^3.4.0"
+    "koa-session": "^3.4.0",
+    "qiniu": "^6.1.13"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
