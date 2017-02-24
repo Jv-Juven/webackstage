@@ -8,7 +8,7 @@ var getGoodsInfo_fn = async (ctx, next) => {
         // 获取已审核通过的物品信息
         let goodsInfo = await IssueModel.findAndCount({
             where: {
-                goodsStatus: 1
+                goodsStatus: 0
             },
             limit: limit, // 每行的数据
             offset: offset // 从0开始算起的行数

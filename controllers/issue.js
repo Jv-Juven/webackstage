@@ -31,7 +31,7 @@ var postIssueInfo_fn = async (ctx, next) => {
                 contactNum: params.contactNum,
                 phone: params.phone,
                 sellerRemarks: params.sellerRemarks,
-                imgs: params.imgs
+                imgs: params.imgs.join(",")
             });
 
             ctx.body = {
