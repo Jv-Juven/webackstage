@@ -12,7 +12,7 @@ qiniu.conf.ACCESS_KEY = '_FphakKEQA8oK8EhGBzgvvf11bOY_mxtBMvBq9gK';
 qiniu.conf.SECRET_KEY = 'sX-WX-5UFwkyB5Ukzz9L5OnI15-TRurTmVjdFbMf';
 
 //要上传的空间
-bucket = 'weplatform';
+bucket = 'sjjxsm';
 //上传到七牛后保存的文件名
 key = 'weixin_pic.jpg';
 //构建上传策略函数
