@@ -20,8 +20,6 @@ function uptoken(bucket) {
   var putPolicy = new qiniu.rs.PutPolicy(bucket);
   return putPolicy.token();
 }
-//生成上传 Token
-token = uptoken(bucket);
 
 //要上传文件的本地路径
 filePath = './ruby-logo.png'
@@ -40,19 +38,21 @@ function uploadFile(uptoken, key, localFile) {
 }
 
 getToken_fn = async (ctx, next) => {
+    //生成上传 Token
+    token = uptoken(bucket);
     ctx.body = {
         uptoken: token
     }
     // ctx.body = token;
 }
 
-upload_fn = async (ctx, next) => {
-
-    //调用uploadFile上传
-    uploadFile(token, key, filePath);
-}
+// upload_fn = async (ctx, next) => {
+//
+//     //调用uploadFile上传
+//     uploadFile(token, key, filePath);
+// }
 
 module.exports = {
     "GET /getToken": getToken_fn,
-    "POST /upload": upload_fn
+    // "POST /upload": upload_fn
 }
