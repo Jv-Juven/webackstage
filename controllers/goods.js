@@ -10,6 +10,7 @@ var getGoodsInfo_fn = async (ctx, next) => {
             where: {
                 goodsStatus: 0
             },
+            order: "createdAt DESC",
             limit: limit, // 每行的数据
             offset: offset // 从0开始算起的行数
         });
